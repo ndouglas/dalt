@@ -123,6 +123,9 @@ io.sockets.on('connection', (socket) => {
           humidity: response.humidity.toFixed(1),
         };
         socket.emit('updateEnvironment', JSON.stringify(data, null, 2));
+      })
+      .catch((error) => {
+        console.error(error);
       });
   });
 });
