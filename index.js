@@ -5,6 +5,17 @@ const socketIo = require('socket.io');
 
 const htmlPath = __dirname + '/html';
 
+const mime = {
+  html: 'text/html',
+  txt: 'text/plain',
+  css: 'text/css',
+  gif: 'image/gif',
+  jpg: 'image/jpeg',
+  png: 'image/png',
+  svg: 'image/svg+xml',
+  js: 'application/javascript'
+};
+
 const gpioPins = {
   '4': new gpio(4, 'out'),
   '17': new gpio(17, 'out'),
@@ -52,24 +63,32 @@ const outlets = [
 ];
 
 const server = http.createServer((req, res) => {
-  fs.readFile(`${htmlPath}/index.html`, (err, data) => {
-    if (err) {
-      console.error(err);
-      res.writeHead(500);
-      res.end(err.message);
-    }
-    else {
-      console.error('Connection!');
-      res.writeHead(200);
-      res.end(data);
-    }
+  const reqpath = req.url.toString().split('?')[0];
+  const file = path.join(dir, reqpath.replace(/\/$/, '/index.html'));
+  if (file.indexOf(dir + path.sep) !== 0) {
+    res.statusCode = 403;
+    res.setHeader('Content-Type', 'text/plain');
+    return res.end('Forbidden');
+  }
+  const type = mime[path.extname(file).slice(1)] || 'text/plain';
+  const readStream = fs.createReadStream(file);
+  readStream.on('open', function () {
+    res.setHeader('Content-Type', type);
+    readStream.pipe(res);
+  });
+  readStream.on('error', function () {
+    res.setHeader('Content-Type', 'text/plain');
+    res.statusCode = 404;
+    res.end('Not found');
   });
 });
 
 const io = socketIo(server);
 
 console.log('Starting server...');
-server.listen(8080);
+server.listen(8080, () => {
+  console.log('Server started.');
+});
 
 io.sockets.on('connection', (socket) => {
   socket.on('outletState', (data) => {
