@@ -4,11 +4,12 @@
     <title>🍋 Dalt</title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <meta charset="UTF-8">
   </head>
   <body>
     <div class="outlet-panel">
       <script>
-        const html = '';
+        let html = '';
         for (let i = 0; i < 4; i++) {
           html += `
             <div class="outlet-fixture" id="outlet-fixture-${i}">
@@ -28,6 +29,12 @@
     <script>
       var socket = io.connect();
 
+      function updateOutletState(outlet, state) {
+        const divId = `outlet-single-${outlet}`;
+        const oldClass = `outlet-state-${!state ? 'true' : 'false'}`;
+        const newClass = `outlet-state-${state ? 'true' : 'false'}`;
+      }
+
       function sendOutletState(outlet, state) {
         const data = {
           outlet: outlet,
@@ -37,6 +44,10 @@
       }
 
       socket.on('outletState', (data) => {
+        const decodedData = JSON.parse(data);
+        const divId = `outlet-single-${outlet}`;
+        const oldState = !
+        $(divId).removeClass(`outlet-state
         console.log(data);
       });
 
