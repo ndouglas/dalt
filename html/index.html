@@ -5,7 +5,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
     <script src="https://d3js.org/d3.v4.js"></script>
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <meta charset="UTF-8">
     <style>
       .outlet-panel-wrapper {
@@ -79,32 +78,6 @@
     <script>
       let socket = io.connect();
 
-      function createChart(divId, title, dataPoints) {
-        return new CanvasJS.Chart(divId, {
-          animationEnabled: true,
-          theme: 'light2',
-          title: {
-            text: title,
-          },
-          data: [
-            {
-              type: 'line',
-              indexLabelFontSize: 16,
-              dataPoints: dataPoints,
-            },
-          ],
-        });
-      }
-
-      let temperatureChart = createChart('environment-temperature-graph', 'Temperature', []);
-
-      let humidityChart = createChart('environment-humidity-graph', 'Humidity', []);
-
-      function updateChart(chart, dataPoint) {
-        chart.options.data[0].dataPoints.push(dataPoint);
-        chart.render();
-      }
-
       function clickOutlet(outlet) {
         const divId = `outlet-single-${outlet}`;
         const onClass = `outlet-state-true`;
@@ -122,8 +95,6 @@
         const fahrenheit = temperature * 9/5 + 32;
         $('#environment-temperature').html(`${temperature}ºC/${fahrenheit}ºF`);
         $('#environment-humidity').html(`${humidity}%`);
-        updateChart(temperatureChart, { y: fahrenheit });
-        updateChart(humidityChart, { y: humidity });
       }
 
       function sendOutletState(outlet, state) {
