@@ -12,10 +12,12 @@ const gpioPins = {
 const server = http.createServer((req, res) => {
   fs.readFile(`${htmlPath}/index.html`, (err, data) => {
     if (err) {
+      console.error(err);
       res.writeHead(500);
       res.end(err.message);
     }
     else {
+      console.error('Connection!');
       res.writeHead(200);
       res.end(data);
     }
@@ -28,6 +30,7 @@ server.listen(8080);
 
 io.sockets.on('connection', (socket) => {
   socket.on('pinState', (data) => {
+    console.log(`Received Pin State Data: ${JSON.stringify(data, null, 2)}`);
     const decodedData = JSON.parse(data);
     const pinNumber = decodedData.pin;
     const state = decodedData.state;
