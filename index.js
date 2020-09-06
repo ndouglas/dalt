@@ -36,6 +36,7 @@ io.sockets.on('connection', (socket) => {
     const state = decodedData.state;
     const pin = gpioPins[pinNumber];
     if (state != pin.readSync()) {
+      console.log(`Writing state ${state} to pin ${pin}.`);
       pin.writeSync(state);
     }
   });
