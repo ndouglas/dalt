@@ -5,6 +5,9 @@ const http = require('http');
 const socketIo = require('socket.io');
 const dhtSensor = require('node-dht-sensor').promises;
 
+
+dhtSensor.setMaxRetries(10);
+
 const htmlPath = __dirname + '/html';
 
 const mime = {
