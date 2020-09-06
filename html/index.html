@@ -110,9 +110,9 @@
         updateEnvironment(decodedData.temperature, decodedData.humidity);
       });
 
-      setTimeout(1000, () => {
+      setTimeout(() => {
         socket.emit('updateEnvironment', {});
-      });
+      }, 1000);
 
     </script>
   </body>
