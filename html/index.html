@@ -110,6 +110,8 @@
         updateEnvironment(decodedData.temperature, decodedData.humidity);
       });
 
+      socket.emit('updateEnvironment', {});
+
     </script>
   </body>
 </html>

@@ -109,7 +109,6 @@ io.sockets.on('connection', (socket) => {
       state: outlets[i].pin.readSync() ? false : true,
     };
     socket.emit('outletState', JSON.stringify(data, null, 2));
-    socket.emit('updateEnvironment', JSON.stringify(getEnvironmentData(), null, 2));
   }
   socket.on('outletState', (data) => {
     console.log(`Received Outlet State Data: ${JSON.stringify(data, null, 2)}`);
