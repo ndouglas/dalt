@@ -124,6 +124,7 @@ io.sockets.on('connection', (socket) => {
     }
   });
   socket.on('updateEnvironment', () => {
+    console.log('Received updateEnvironment event');
     socket.emit('updateEnvironment', JSON.stringify(getEnvironmentData(), null, 2));
   });
 });

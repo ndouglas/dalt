@@ -99,11 +99,13 @@
       }
 
       socket.on('outletState', (data) => {
+        console.log('Received outletState event');
         const decodedData = JSON.parse(data);
         updateOutletState(decodedData.outlet, decodedData.state);
       });
 
       socket.on('updateEnvironment', (data) => {
+        console.log('Received updateEnvironment event');
         const decodedData = JSON.parse(data);
         updateEnvironment(decodedData.temperature, decodedData.humidity);
       });
