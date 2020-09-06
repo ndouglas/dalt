@@ -116,7 +116,7 @@ io.sockets.on('connection', (socket) => {
   socket.on('updateEnvironment', () => {
     console.log('Received updateEnvironment event');
     dhtSensor
-      .read(11, 2)
+      .read(11, 14)
       .then((response) => {
         const data = {
           temperature: response.temperature.toFixed(1),
