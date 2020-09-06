@@ -9,6 +9,10 @@
       .outlet-panel {
         width: 512px;
         display: flex;
+        border: 1px solid #000000;
+      }
+      .outlet-panel h2 {
+        text-align: center;
       }
       .outlet-fixture {
         flex: 1;
@@ -32,6 +36,7 @@
   </head>
   <body>
     <div class="outlet-panel" id="outlet-panel">
+      <h2>Outlet Panel</h2>
       <script>
         let html = '';
         for (let i = 0; i < 4; i++) {
