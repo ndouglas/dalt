@@ -81,6 +81,7 @@ io.sockets.on('connection', (socket) => {
     if (state != pin.readSync()) {
       console.log(`Writing state ${state} to outlet ${outletNumber}.`);
       pin.writeSync(state);
+      socket.emit('outletState', data);
     }
   });
 });

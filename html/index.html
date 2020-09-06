@@ -6,7 +6,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
   </head>
   <body>
+    <div class="outlet-panel">
+      <script>
+        const html = '';
+        for (let i = 0; i < 4; i++) {
+          html += `
+            <div class="outlet-fixture" id="outlet-fixture-${i}">
+              <div class="outlet-single" id="outlet-single-${i*2+1}">
+              </div>
+              <div class="outlet-single" id="outlet-single-${i*2+2}">
+              </div>
+            </div>
+          `;
+        }
+        $('outlet-panel').html(html);
+      </script>
     <h2>Outlet 1</h2>
+
     <button type="button" id="state" onclick="sendOutletState(1, true);" style="background-color:green;">ON</button>
     <button type="button" id="state" onclick="sendOutletState(1, false);" style="background-color:red;">OFF</button>
     <script>
@@ -19,6 +35,10 @@
         };
         socket.emit('outletState', JSON.stringify(data, null, 2));
       }
+
+      socket.on('outletState', (data) => {
+        console.log(data);
+      });
 
     </script>
   </body>
