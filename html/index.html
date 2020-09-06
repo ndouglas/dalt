@@ -35,11 +35,13 @@
       <script>
         let html = '';
         for (let i = 0; i < 4; i++) {
+          const outletIdTop = i * 2 + 1;
+          const outletIdBottom = outletIdTop + 1;
           html += `
             <div class="outlet-fixture" id="outlet-fixture-${i}">
-              <div class="outlet-single outlet-state-false" id="outlet-single-${i*2+1}">
+              <div class="outlet-single outlet-state-false" id="outlet-single-${outletIdTop}" onClick="clickOutlet(${outletIdTop});">
               </div>
-              <div class="outlet-single outlet-state-false" id="outlet-single-${i*2+2}">
+              <div class="outlet-single outlet-state-false" id="outlet-single-${outletIdBottom}" onClick="clickOutlet(${outletIdBottom});">
               </div>
             </div>
           `;
@@ -54,13 +56,21 @@
     <script>
       var socket = io.connect();
 
+      function clickOutlet(outlet) {
+        const divId = `outlet-single-${outlet}`;
+        const onClass = `outlet-state-true`;
+        sendOutletState(outlet, !$(`#${divId}`).hasClass(onClass));
+      }
+
       function updateOutletState(outlet, state) {
         const divId = `outlet-single-${outlet}`;
         const oldClass = `outlet-state-${!state ? 'true' : 'false'}`;
         const newClass = `outlet-state-${state ? 'true' : 'false'}`;
+        $(`#${divId}`).removeClass(oldClass).addClass(newClass);
       }
 
       function sendOutletState(outlet, state) {
+        updateOutletState(outlet, state);
         const data = {
           outlet: outlet,
           state: state,
@@ -70,10 +80,7 @@
 
       socket.on('outletState', (data) => {
         const decodedData = JSON.parse(data);
-        const divId = `outlet-single-${outlet}`;
-        const oldState = !
-        $(divId).removeClass(`outlet-state
-        console.log(data);
+        updateOutletState(decodedData.outlet, decodedData.state);
       });
 
     </script>
