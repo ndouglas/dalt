@@ -92,6 +92,13 @@ server.listen(8080, () => {
 });
 
 io.sockets.on('connection', (socket) => {
+  for (let i = 0; i < outlets.length; i++) {
+    const data = {
+      outlet: i,
+      state: pin.readSync() ? false : true,
+    };
+    socket.emit('outletState', JSON.stringify(data, null, 2));
+  }
   socket.on('outletState', (data) => {
     console.log(`Received Outlet State Data: ${JSON.stringify(data, null, 2)}`);
     const decodedData = JSON.parse(data);
