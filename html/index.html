@@ -85,8 +85,8 @@
       }
 
       function updateEnvironment(temperature, humidity) {
-        $('#environment-temperature').html(temperature);
-        $('#environment-humidity').html(humidity);
+        $('#environment-temperature').html(`${temperature}ºC/${temperature * 9/5 + 32}ºF`);
+        $('#environment-humidity').html(`${humidity}%`);
       }
 
       function sendOutletState(outlet, state) {
@@ -99,13 +99,11 @@
       }
 
       socket.on('outletState', (data) => {
-        console.log('Received outletState event');
         const decodedData = JSON.parse(data);
         updateOutletState(decodedData.outlet, decodedData.state);
       });
 
       socket.on('updateEnvironment', (data) => {
-        console.log('Received updateEnvironment event');
         const decodedData = JSON.parse(data);
         updateEnvironment(decodedData.temperature, decodedData.humidity);
       });
