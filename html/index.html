@@ -85,8 +85,8 @@
       }
 
       function updateEnvironment(temperature, humidity) {
-        $('#environment-temperature').innerHTML(temperature);
-        $('#environment-humidity').innerHTML(humidity);
+        $('#environment-temperature').html(temperature);
+        $('#environment-humidity').html(humidity);
       }
 
       function sendOutletState(outlet, state) {
