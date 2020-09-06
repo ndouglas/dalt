@@ -1,7 +1,7 @@
 # 🍋 Dalt
 This is a little webserver for monitoring and controlling devices in my workshop/grow room.
 
-Dalt is a Raspberry Pi 3 B+ located in a small room off my garage named after [House Dalt](https://awoiaf.westeros.org/index.php/House_Dalt).  
+Dalt is a Raspberry Pi 3 B+, named after [House Dalt](https://awoiaf.westeros.org/index.php/House_Dalt), located in a small room off my garage.  
 
 ## Current Connections
 - Eight individually addressable and controllable 110 VAC outlets
