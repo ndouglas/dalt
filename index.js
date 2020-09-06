@@ -1,5 +1,6 @@
 const gpio = require('onoff').Gpio;
 const fs = require('fs');
+const path = require('path');
 const http = require('http');
 const socketIo = require('socket.io');
 
