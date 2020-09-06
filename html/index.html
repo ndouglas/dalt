@@ -69,33 +69,6 @@
     <div class="environment-wrapper">
       <h2>Environment</h2>
       <div class="environment" id="environment">
-          <script>
-            function createChart(divId, title, dataPoints) {
-              return new CanvasJS.Chart(divId, {
-                animationEnabled: true,
-                theme: 'light2',
-                title: {
-                  text: title,
-                },
-                data: [
-                  {
-                    type: 'line',
-                    indexLabelFontSize: 16,
-                    dataPoints: dataPoints,
-                  },
-                ],
-              });
-            }
-
-            let temperatureChart = createChart('environment-temperature-graph', 'Temperature', []);
-
-            let humidityChart = createChart('environment-humidity-graph', 'Humidity', []);
-
-            function updateChart(chart, dataPoint) {
-              chart.options.data[0].dataPoints.push(dataPoint);
-              chart.render();
-            }
-          </script>
         <div class="environment-temperature" id="environment-temperature"></div>
         <div class="environment-humidity" id="environment-humidity"></div>
         <div class="environment-graph environment-temperature-graph" id="environment-temperature-graph"></div>
@@ -104,7 +77,33 @@
     </div>
 
     <script>
-      var socket = io.connect();
+      let socket = io.connect();
+
+      function createChart(divId, title, dataPoints) {
+        return new CanvasJS.Chart(divId, {
+          animationEnabled: true,
+          theme: 'light2',
+          title: {
+            text: title,
+          },
+          data: [
+            {
+              type: 'line',
+              indexLabelFontSize: 16,
+              dataPoints: dataPoints,
+            },
+          ],
+        });
+      }
+
+      let temperatureChart = createChart('environment-temperature-graph', 'Temperature', []);
+
+      let humidityChart = createChart('environment-humidity-graph', 'Humidity', []);
+
+      function updateChart(chart, dataPoint) {
+        chart.options.data[0].dataPoints.push(dataPoint);
+        chart.render();
+      }
 
       function clickOutlet(outlet) {
         const divId = `outlet-single-${outlet}`;
