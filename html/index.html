@@ -6,10 +6,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
     <meta charset="UTF-8">
     <style>
+      .outlet-panel-wrapper {
+        border: 1px solid #000000;
+      }
       .outlet-panel {
         width: 512px;
         display: flex;
-        border: 1px solid #000000;
       }
       .outlet-panel h2 {
         text-align: center;
@@ -35,24 +37,26 @@
     </style>
   </head>
   <body>
-    <div class="outlet-panel" id="outlet-panel">
+    <div class="outlet-panel-wrapper">
       <h2>Outlet Panel</h2>
-      <script>
-        let html = '';
-        for (let i = 0; i < 4; i++) {
-          const outletIdTop = i * 2 + 1;
-          const outletIdBottom = outletIdTop + 1;
-          html += `
-            <div class="outlet-fixture" id="outlet-fixture-${i}">
-              <div class="outlet-single outlet-state-false" id="outlet-single-${outletIdTop}" onClick="clickOutlet(${outletIdTop});">
+      <div class="outlet-panel" id="outlet-panel">
+        <script>
+          let html = '';
+          for (let i = 0; i < 4; i++) {
+            const outletIdTop = i * 2 + 1;
+            const outletIdBottom = outletIdTop + 1;
+            html += `
+              <div class="outlet-fixture" id="outlet-fixture-${i}">
+                <div class="outlet-single outlet-state-false" id="outlet-single-${outletIdTop}" onClick="clickOutlet(${outletIdTop});">
+                </div>
+                <div class="outlet-single outlet-state-false" id="outlet-single-${outletIdBottom}" onClick="clickOutlet(${outletIdBottom});">
+                </div>
               </div>
-              <div class="outlet-single outlet-state-false" id="outlet-single-${outletIdBottom}" onClick="clickOutlet(${outletIdBottom});">
-              </div>
-            </div>
-          `;
-        }
-        $('#outlet-panel').append(html);
-      </script>
+            `;
+          }
+          $('#outlet-panel').append(html);
+        </script>
+      </div>
     </div>
 
     <script>
