@@ -1,0 +1,325 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 119.0,
+		"last_filter": "Package Control: insta",
+		"selected_items":
+		[
+			[
+				"Package Control: insta",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: inst",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package Control: rem",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control:",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 412.0
+	},
+	"console":
+	{
+		"height": 130.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/nathan/Projects/dalt"
+	],
+	"file_history":
+	[
+		"/Users/nathan/Projects/dotfiles/bash.pi.d/gpio_write_value.sh",
+		"/Users/nathan/Projects/dotfiles/bash.lib.d/fail.sh",
+		"/Users/nathan/Projects/dotfiles/bash.hosts.dalt.d/toggle_outlet.sh",
+		"/Users/nathan/Projects/dotfiles/bash.hosts.dalt.d/switch_outlet.sh",
+		"/Users/nathan/Projects/dotfiles/bash.hosts.dalt.d/get_pin_outlet.sh",
+		"/Users/nathan/Projects/dotfiles/bash.hosts.dalt.d/get_outlet_value.sh",
+		"/Users/nathan/Projects/dotfiles/bash.inc.d/options.sh",
+		"/Users/nathan/Projects/dotfiles/bash.inc.d/bash_options.sh",
+		"/Users/nathan/Projects/dotfiles/bash.hosts.dalt.d/get_outlet_status.sh",
+		"/Users/nathan/Projects/dotfiles/bash.hosts.dalt.d/get_outlet_pin.sh",
+		"/Users/nathan/Projects/dotfiles/bash.hosts.dalt.d/enable_outlet.sh",
+		"/Users/nathan/Projects/dotfiles/bash.hosts.dalt.d/disable_outlet.sh",
+		"/Users/nathan/Projects/dotfiles/bash.hosts.dalt.d/describe_outlet.sh",
+		"/Users/nathan/Projects/dotfiles/install.conf.yaml",
+		"/Users/nathan/Projects/dotfiles/home.d/bash_common.sh",
+		"/Users/nathan/Projects/dotfiles/bash.lib.d/catch.sh",
+		"/Users/nathan/Projects/dotfiles/bash.lib.d/exit_on_error.sh",
+		"/Users/nathan/Projects/dotfiles/bash.lib.d/get_os.sh",
+		"/Users/nathan/Projects/dotfiles/bash.lib.d/source_dir_scripts.sh",
+		"/Users/nathan/Projects/dotfiles/bash.os.d/synology.sh",
+		"/Users/nathan/Projects/dotfiles/bash.os.d/pi.sh",
+		"/Users/nathan/Projects/dotfiles/bash.pi.d/gpio_write_toggle.sh",
+		"/Users/nathan/Projects/dotfiles/bash.pi.d/gpio_write_low.sh",
+		"/Users/nathan/Projects/dotfiles/bash.pi.d/gpio_get_value.sh",
+		"/Users/nathan/Projects/dotfiles/bash.pi.d/gpio_write_high.sh",
+		"/Users/nathan/Projects/dotfiles/bash.hosts.d/dalt.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/move_bibliotik_download.sh",
+		"/Users/nathan/Projects/dotfiles/bash.ain.d/sync_s3.sh",
+		"/Users/nathan/Projects/dotfiles/bash.ain.d/sync.sh",
+		"/Users/nathan/Projects/dotfiles/bash.inc.d/python.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/move_myanonamouse_download.sh",
+		"/Users/nathan/Projects/dotfiles/bin/install_motd.sh",
+		"/Users/nathan/Projects/dotfiles/youtube-dl.d/users.txt",
+		"/Users/nathan/Projects/dotfiles/youtube-dl.d/playlists.txt",
+		"/Users/nathan/Projects/dotfiles/bash.youtube.d/download_playlist.sh",
+		"/Users/nathan/Projects/dotfiles/bash.youtube.d/download_channel.sh",
+		"/Users/nathan/Projects/dotfiles/youtube-dl.d/channels.txt",
+		"/Users/nathan/Projects/dotfiles/bash.youtube.d/download_user.sh",
+		"/Users/nathan/Projects/dotfiles/bash.podcasts.d/download_new.sh",
+		"/Users/nathan/Projects/dotfiles/podcast-dl.d/podcasts.txt",
+		"/Users/nathan/Projects/dotfiles/reddit.d/subreddits.txt",
+		"/Users/nathan/Projects/dotfiles/bash.reddit.d/archive_subreddit.sh",
+		"/Users/nathan/Projects/dotfiles/bash.ain.d/sync_all_s3.sh",
+		"/Users/nathan/Projects/dotfiles/bash.lib.d/get_new_ssh_key.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/transfer_music_item.sh",
+		"/Users/nathan/Projects/dotfiles/bash.os.d/macos.sh",
+		"/Users/nathan/Projects/dotfiles/bash.synology.d/appstore_path.sh",
+		"/Users/nathan/Projects/dotfiles/bash.hosts.d/uller.sh",
+		"/Users/nathan/Projects/dotfiles/README.md",
+		"/Users/nathan/Projects/dotfiles/bash.macos.d/key_repeat.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/move_orpheus_download.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/move_morethantv_download.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/move_miscellaneous_download.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/move_awesomehd_download.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/transfer_miscellaneous_item.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/transfer_comic_item.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/transfer_book_item.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/transfer_audiobook_item.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/move_torrentleech_download.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/move_redacted_download.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/move_pleasuredome_download.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/move_passthepopcorn_download.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/transfer_videogame_item.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/move_torrentleech_downloads.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/move_redacted_downloads.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/move_pleasuredome_downloads.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/move_passthepopcorn_downloads.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/move_orpheus_downloads.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/move_myanonamouse_downloads.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/move_morethantv_downloads.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/move_awesomehd_downloads.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/move_bibliotik_downloads.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/move_miscellaneous_downloads.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/transfer_tv_item.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/transfer_plunking_item.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/move_downloads.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/transfer_movie_item.sh",
+		"/Users/nathan/Projects/dotfiles/home.d/filebot.license",
+		"/Users/nathan/Projects/dotfiles/bash.reddit.d/archive_subreddit_top_all.sh",
+		"/Users/nathan/Projects/dotfiles/bash.reddit.d/archive_subreddit_top_year.sh",
+		"/Users/nathan/Projects/dotfiles/bash.reddit.d/archive_subreddit_top_month.sh",
+		"/Users/nathan/Projects/dotfiles/bash.reddit.d/update_archives.sh",
+		"/Users/nathan/Projects/dotfiles/bash.lib.d/timeout.sh",
+		"/Users/nathan/Projects/dotfiles/bash.reddit.d/archive_subreddit_top_day.sh",
+		"/Users/nathan/Projects/dotfiles/bash.reddit.d/archive_subreddit_top_week.sh",
+		"/Users/nathan/Projects/dotfiles/bash.beets.d/list_artist_albums.sh",
+		"/Users/nathan/Projects/dotfiles/bash.beets.d/list_artist.sh",
+		"/Users/nathan/Projects/dotfiles/bash.beets.d/list_album_tracks.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/transfer_item.sh",
+		"/Users/nathan/Projects/dotfiles/bash.lib.d/split_directory.sh",
+		"/Users/nathan/Projects/dotfiles/bash.lib.d/change_document_directory.sh",
+		"/Users/nathan/Projects/dotfiles/bash.lib.d/get_last_indexed_music_track.sh",
+		"/Users/nathan/Projects/dotfiles/bash.lib.d/directory_has_filetype.sh",
+		"/Users/nathan/Projects/dotfiles/bash.lib.d/can_safely_move_directory.sh",
+		"/Users/nathan/Projects/dotfiles/bash.aliases.d/stat.sh",
+		"/Users/nathan/Projects/dotfiles/bash.aliases.d/date.sh",
+		"/Users/nathan/Projects/dotfiles/bash.lib.d/can_safely_move_file.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/tr_transfer_item.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/tr_transfer_videogame_item.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/make_tenesmus_torrent.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/tr_transfer_plunking_item.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/tr_transfer_miscellaneous_item.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/tr_transfer_movie_item.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/tr_transfer_music_item.sh",
+		"/Users/nathan/Projects/dotfiles/bash.lib.d/can_safely_move_item.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/tr_transfer_comic_item.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/tr_transfer_tv_item.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/tr_transfer_book_item.sh",
+		"/Users/nathan/Projects/dotfiles/bash.torrents.d/tr_transfer_audiobook_item.sh",
+		"/Users/nathan/Projects/dotfiles/ssh.d/config.d/azymus",
+		"/Users/nathan/Projects/dotfiles/bash.comics.d/is_invalid_cbz.sh",
+		"/Users/nathan/Projects/dotfiles/bash.comics.d/find_invalid_cbzs.sh",
+		"/Users/nathan/Projects/dotfiles/bash.comics.d/set_volume.sh",
+		"/Users/nathan/Projects/dotfiles/bash.lib.d/list_directories.sh",
+		"/Users/nathan/Projects/dotfiles/bash.comics.d/get_missing_comics_report.sh",
+		"/Users/nathan/Projects/dotfiles/bash.lib.d/declutter.sh",
+		"/Users/nathan/Projects/dotfiles/bash.lib.d/zap_eadir.sh",
+		"/Users/nathan/Projects/dotfiles/bash.comics.d/move_invalid_cbzs.sh",
+		"/Users/nathan/Projects/dotfiles/bash.comics.d/move_issues.sh",
+		"/Users/nathan/Projects/dotfiles/bash.comics.d/move_issue.sh",
+		"/Users/nathan/Projects/dotfiles/bash.comics.d/set_metadata.sh",
+		"/Users/nathan/Projects/dotfiles/bash.comics.d/set_series_volume.sh",
+		"/Users/nathan/Projects/dotfiles/bash.lib.d/generate_password.sh",
+		"/Users/nathan/Projects/dotfiles/bash.lib.d/change_extension.sh",
+		"/Users/nathan/Projects/dotfiles/bash.inc.d/ps1.sh",
+		"/Users/nathan/Projects/dotfiles/bash.inc.d/bash_tab_completion.sh",
+		"/Users/nathan/Projects/dotfiles/bash.hosts.d/dayne.sh",
+		"/Users/nathan/Projects/dotfiles/bash.env.d/synology_synocommunity_path.sh"
+	],
+	"find":
+	{
+		"height": 39.0
+	},
+	"find_in_files":
+	{
+		"height": 101.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 24.0
+	},
+	"input":
+	{
+		"height": 55.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "dalt.sublime-project",
+	"replace":
+	{
+		"height": 44.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"core.exte",
+				"config/sync/core.extension.yml"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 353.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
