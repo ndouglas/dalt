@@ -92,15 +92,6 @@ server.listen(8080, () => {
   console.log('Server started.');
 });
 
-const getEnvironmentData = () => {
-  const readout = dhtSensor.read(11, 2);
-  const result = {
-    temperature: readout.temperature.toFixed(1),
-    humidity: readout.humidity.toFixed(1),
-  };
-  return result;
-};
-
 io.sockets.on('connection', (socket) => {
 
   for (let i = 0; i < outlets.length; i++) {
@@ -124,6 +115,14 @@ io.sockets.on('connection', (socket) => {
   });
   socket.on('updateEnvironment', () => {
     console.log('Received updateEnvironment event');
-    socket.emit('updateEnvironment', JSON.stringify(getEnvironmentData(), null, 2));
+    dhtSensor
+      .read(11, 2)
+      .then((response) => {
+        const data = {
+          temperature: response.temperature.toFixed(1),
+          humidity: response.humidity.toFixed(1),
+        };
+        socket.emit('updateEnvironment', JSON.stringify(data, null, 2));
+      });
   });
 });
