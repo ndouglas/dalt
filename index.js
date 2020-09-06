@@ -19,7 +19,7 @@ const gpioPins = {
 const outlets = [
   {
     id: 1,
-    pinNo: gpioPins['4'],
+    pin: gpioPins['4'],
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ const outlets = [
   },
   {
     id: 3,
-    pinNo: gpioPins['18'],
+    pin: gpioPins['18'],
   },
   {
     id: 4,
@@ -35,7 +35,7 @@ const outlets = [
   },
   {
     id: 5,
-    pinNo: gpioPins['22'],
+    pin: gpioPins['22'],
   },
   {
     id: 6,
@@ -43,7 +43,7 @@ const outlets = [
   },
   {
     id: 7,
-    pinNo: gpioPins['24'],
+    pin: gpioPins['24'],
   },
   {
     id: 8,
@@ -68,6 +68,7 @@ const server = http.createServer((req, res) => {
 
 const io = socketIo(server);
 
+console.log('Starting server...');
 server.listen(8080);
 
 io.sockets.on('connection', (socket) => {
@@ -76,7 +77,7 @@ io.sockets.on('connection', (socket) => {
     const decodedData = JSON.parse(data);
     const outletNumber = decodedData.outlet;
     const state = decodedData.state ? 0 : 1;
-    const pin = outlets[outletNumber - 1];
+    const pin = outlets[outletNumber - 1].pin;
     if (state != pin.readSync()) {
       console.log(`Writing state ${state} to outlet ${outletNumber}.`);
       pin.writeSync(state);
