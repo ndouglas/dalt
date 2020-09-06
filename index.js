@@ -65,8 +65,8 @@ const outlets = [
 
 const server = http.createServer((req, res) => {
   const reqpath = req.url.toString().split('?')[0];
-  const file = path.join(dir, reqpath.replace(/\/$/, '/index.html'));
-  if (file.indexOf(dir + path.sep) !== 0) {
+  const file = path.join(htmlPath, reqpath.replace(/\/$/, '/index.html'));
+  if (file.indexOf(`${htmlPath}${path.sep}`) !== 0) {
     res.statusCode = 403;
     res.setHeader('Content-Type', 'text/plain');
     return res.end('Forbidden');
