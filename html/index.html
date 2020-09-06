@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>GPIO Control</title>
+    <title>🍋 Dalt</title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
   </head>
   <body>
-    <h2>Control GPIO 4</h2>
-    <button type="button" id="state" onclick="sendPinState(4, 0);" style="background-color:green;">ON</button>
-    <button type="button" id="state" onclick="sendPinState(4, 1);" style="background-color:red;">OFF</button>
+    <h2>Outlet 1</h2>
+    <button type="button" id="state" onclick="sendOutletState(1, true);" style="background-color:green;">ON</button>
+    <button type="button" id="state" onclick="sendOutletState(1, false);" style="background-color:red;">OFF</button>
     <script>
       var socket = io.connect();
 
-      function sendPinState(pin, state) {
+      function sendOutletState(outlet, state) {
         const data = {
-          pin: pin,
+          outlet: outlet,
           state: state,
         };
-        socket.emit('pinState', JSON.stringify(data, null, 2));
+        socket.emit('outletState', JSON.stringify(data, null, 2));
       }
 
     </script>
