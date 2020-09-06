@@ -6,8 +6,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
     <meta charset="UTF-8">
     <style>
+      .outlet-panel {
+        width: 512px;
+      }
       .outlet-fixture {
-
+        width: 128px;
       }
       .outlet-single {
         background: url('./images/outlet.png');
@@ -16,6 +19,12 @@
         background-size: contain;
         width: 128px;
         height: 128px;
+      }
+      .outlet-state-false {
+        opacity: 50%;
+      }
+      .outlet-state-true {
+        opacity: 100%;
       }
     </style>
   </head>
@@ -26,9 +35,9 @@
         for (let i = 0; i < 4; i++) {
           html += `
             <div class="outlet-fixture" id="outlet-fixture-${i}">
-              <div class="outlet-single" id="outlet-single-${i*2+1}">
+              <div class="outlet-single outlet-state-false" id="outlet-single-${i*2+1}">
               </div>
-              <div class="outlet-single" id="outlet-single-${i*2+2}">
+              <div class="outlet-single outlet-state-false" id="outlet-single-${i*2+2}">
               </div>
             </div>
           `;
