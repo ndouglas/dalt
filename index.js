@@ -19,35 +19,35 @@ const gpioPins = {
 const outlets = [
   {
     id: 1,
-    pinNo: gpioPins.4,
+    pinNo: gpioPins['4'],
   },
   {
     id: 2,
-    pin: gpioPins.17,
+    pin: gpioPins['17'],
   },
   {
     id: 3,
-    pinNo: gpioPins.18,
+    pinNo: gpioPins['18'],
   },
   {
     id: 4,
-    pin: gpioPins.27,
+    pin: gpioPins['27'],
   },
   {
     id: 5,
-    pinNo: gpioPins.22,
+    pinNo: gpioPins['22'],
   },
   {
     id: 6,
-    pin: gpioPins.23,
+    pin: gpioPins['23'],
   },
   {
     id: 7,
-    pinNo: gpioPins.24,
+    pinNo: gpioPins['24'],
   },
   {
     id: 8,
-    pin: gpioPins.25,
+    pin: gpioPins['25'],
   },
 ];
 
