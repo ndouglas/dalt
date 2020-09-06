@@ -60,6 +60,14 @@
       </div>
     </div>
 
+    <div class="environment-wrapper">
+      <h2>Environment</h2>
+      <div class="environment" id="environment">
+        <div class="environment-temperature" id="environment-temperature"></div>
+        <div class="environment-humidity" id="environment-humidity"></div>
+      </div>
+    </div>
+
     <script>
       var socket = io.connect();
 
@@ -76,6 +84,11 @@
         $(`#${divId}`).removeClass(oldClass).addClass(newClass);
       }
 
+      function updateEnvironment(temperature, humidity) {
+        $('#environment-temperature').innerHTML(temperature);
+        $('#environment-humidity').innerHTML(humidity);
+      }
+
       function sendOutletState(outlet, state) {
         updateOutletState(outlet, state);
         const data = {
@@ -88,6 +101,11 @@
       socket.on('outletState', (data) => {
         const decodedData = JSON.parse(data);
         updateOutletState(decodedData.outlet, decodedData.state);
+      });
+
+      socket.on('updateEnvironment', (data) => {
+        const decodedData = JSON.parse(data);
+        updateEnvironment(decodedData.temperature, decodedData.humidity);
       });
 
     </script>

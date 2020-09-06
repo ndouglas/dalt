@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const http = require('http');
 const socketIo = require('socket.io');
+const dhtSensor = require("node-dht-sensor");
 
 const htmlPath = __dirname + '/html';
 
@@ -91,13 +92,24 @@ server.listen(8080, () => {
   console.log('Server started.');
 });
 
+const getEnvironmentData = () => {
+  const readout = dhtSensor.read(11, 2);
+  const result = {
+    temperature: readout.temperature.toFixed(1),
+    humidity: readout.humidity.toFixed(1),
+  };
+  return result;
+};
+
 io.sockets.on('connection', (socket) => {
+
   for (let i = 0; i < outlets.length; i++) {
     const data = {
       outlet: i + 1,
       state: outlets[i].pin.readSync() ? false : true,
     };
     socket.emit('outletState', JSON.stringify(data, null, 2));
+    socket.emit('updateEnvironment', JSON.stringify(getEnvironmentData(), null, 2));
   }
   socket.on('outletState', (data) => {
     console.log(`Received Outlet State Data: ${JSON.stringify(data, null, 2)}`);
@@ -110,5 +122,8 @@ io.sockets.on('connection', (socket) => {
       pin.writeSync(state);
       socket.emit('outletState', data);
     }
+  });
+  socket.on('updateEnvironment', () => {
+    socket.emit('updateEnvironment', JSON.stringify(getEnvironmentData(), null, 2));
   });
 });
