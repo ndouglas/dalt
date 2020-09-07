@@ -164,24 +164,29 @@ io.sockets.on('connection', (socket) => {
     device.on('power-on', () => {
       socket.emit('kasaPowerOn', JSON.stringify(getDeviceData(device), null, 2));
     });
+
     device.on('power-off', () => {
       socket.emit('kasaPowerOff', JSON.stringify(getDeviceData(device), null, 2));
     });
+
     device.on('power-update', (powerOn) => {
       socket.emit('kasaPowerUpdate', JSON.stringify(getDeviceData(device), null, 2));
-      console.log('power-update', device.host, powerOn);
+      // console.log('power-update', device.host, powerOn);
     });
+
     device.on('in-use', () => {
       socket.emit('kasaInUse', JSON.stringify(getDeviceData(device), null, 2));
       console.log('in-use', device.host);
     });
+
     device.on('not-in-use', () => {
       socket.emit('kasaNotInUse', JSON.stringify(getDeviceData(device), null, 2));
       console.log('not-in-use', device.host);
     });
+
     device.on('in-use-update', (inUse) => {
       socket.emit('kasaInUseUpdate', JSON.stringify(getDeviceData(device), null, 2));
-      console.log('in-use-update', device.host, inUse);
+      // console.log('in-use-update', device.host, inUse);
     });
 
   });
