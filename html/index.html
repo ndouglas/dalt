@@ -127,6 +127,8 @@
         const divId = `smart-plug-${hostname}`;
         const oldClass = `smart-plug-state-${!state ? 'true' : 'false'}`;
         const newClass = `smart-plug-state-${state ? 'true' : 'false'}`;
+        console.log(`Removing class ${oldClass} from ${hostname}.`);
+        console.log(`Adding class ${newClass} to ${hostname}.`);
         $(`#${divId}`).removeClass(oldClass).addClass(newClass);
       }
 
