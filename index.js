@@ -4,7 +4,9 @@ const path = require('path');
 const http = require('http');
 const socketIo = require('socket.io');
 const dhtSensor = require('node-dht-sensor').promises;
+const KasaClient = require('tplink-smarthome-api').Client;
 
+const kasaClient = new KasaClient();
 
 dhtSensor.setMaxRetries(10);
 
@@ -104,6 +106,7 @@ io.sockets.on('connection', (socket) => {
     };
     socket.emit('outletState', JSON.stringify(data, null, 2));
   }
+
   socket.on('outletState', (data) => {
     console.log(`Received Outlet State Data: ${JSON.stringify(data, null, 2)}`);
     const decodedData = JSON.parse(data);
@@ -116,6 +119,7 @@ io.sockets.on('connection', (socket) => {
       socket.emit('outletState', data);
     }
   });
+
   socket.on('updateEnvironment', () => {
     dhtSensor
       .read(11, 14)
@@ -130,4 +134,42 @@ io.sockets.on('connection', (socket) => {
         console.error(error);
       });
   });
+
+  kasaClient.on('device-new', (device) => {
+
+    console.log('device-new', device);
+    device.startPolling(5000);
+
+    // Plug Events
+    device.on('power-on', () => {
+      console.log('power-on', device);
+    });
+    device.on('power-off', () => {
+      console.log('power-off', device);
+    });
+    device.on('power-update', (powerOn) => {
+      console.log('power-update', device, powerOn);
+    });
+    device.on('in-use', () => {
+      console.log('in-use', device);
+    });
+    device.on('not-in-use', () => {
+      console.log('not-in-use', device);
+    });
+    device.on('in-use-update', (inUse) => {
+      console.log('in-use-update', device, inUse);
+    });
+
+  });
+
+  kasaClient.on('device-online', (device) => {
+    console.log('device-online', device);
+  });
+
+  kasaClient.on('device-offline', (device) => {
+    console.log('device-offline', device);
+  });
+
+  kasaClient.startDiscovery();
+
 });
