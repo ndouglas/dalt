@@ -145,36 +145,38 @@
         $('#environment-humidity-value').html(`${humidity}%`);
       }
 
-      let html = '';
-      for (let i = 0; i < 4; i++) {
-        const outletIdTop = i * 2 + 1;
-        const outletIdBottom = outletIdTop + 1;
-        html += `
-          <div class="outlet-fixture" id="outlet-fixture-${i}">
-            <div class="outlet-single outlet-state-false" id="outlet-single-${outletIdTop}" onClick="clickOutlet(${outletIdTop});">
-              ${outletIdTop}
+      function buildOutlets() {
+        let html = '';
+        for (let i = 0; i < 4; i++) {
+          const outletIdTop = i * 2 + 1;
+          const outletIdBottom = outletIdTop + 1;
+          html += `
+            <div class="outlet-fixture" id="outlet-fixture-${i}">
+              <div class="outlet-single outlet-state-false" id="outlet-single-${outletIdTop}" onClick="clickOutlet(${outletIdTop});">
+                ${outletIdTop}
+              </div>
+              <div class="outlet-single outlet-state-false" id="outlet-single-${outletIdBottom}" onClick="clickOutlet(${outletIdBottom});">
+                ${outletIdBottom}
+              </div>
             </div>
-            <div class="outlet-single outlet-state-false" id="outlet-single-${outletIdBottom}" onClick="clickOutlet(${outletIdBottom});">
-              ${outletIdBottom}
-            </div>
-          </div>
-        `;
+          `;
+        }
+        $('#outlet-panel').append(html);
       }
-      $('#outlet-panel').append(html);
 
       function updateSmartPlugs() {
-        let html = '';
+        let smartPlugHtml = '';
         for (let i = 0; i < smartPlugs.length; i++) {
           const smartPlug = smartPlugs[i];
           const host = smartPlug.host;
           const hostname = smartPlug.hostname;
-          html += `
+          smartPlugHtml += `
             <div class="smart-plug" id="smart-plug-${hostname}" onClick="clickSmartPlug('${hostname}', '${host}');">
               ${hostname}
             </div>
           `;
         }
-        $('#smart-plugs').append(html);
+        $('#smart-plugs').append(smartPlugHtml);
       }
 
       socket.on('outletState', (data) => {
@@ -205,6 +207,8 @@
       const updateEnvironmentInterval = setInterval(() => {
         socket.emit('updateEnvironment', {});
       }, 1000);
+
+      buildOutlets();
 
     </script>
   </body>
