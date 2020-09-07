@@ -5,6 +5,7 @@ const http = require('http');
 const socketIo = require('socket.io');
 const dhtSensor = require('node-dht-sensor').promises;
 const KasaClient = require('tplink-smarthome-api').Client;
+const dns = require('dns');
 
 const kasaClient = new KasaClient();
 
@@ -32,6 +33,9 @@ const gpioPins = {
   '23': new gpio(23, 'out'),
   '24': new gpio(24, 'out'),
   '25': new gpio(25, 'out'),
+};
+
+const hostnames = {
 };
 
 const outlets = [
@@ -138,6 +142,7 @@ io.sockets.on('connection', (socket) => {
   const getDeviceData = (device) => {
     return {
       host: device.host,
+      hostname: hostnames[device.host] || '',
       port: device.port,
       status: device.status,
     };
@@ -146,6 +151,13 @@ io.sockets.on('connection', (socket) => {
   kasaClient.on('device-new', (device) => {
 
     socket.emit('kasaNewDevice', JSON.stringify(getDeviceData(device), null, 2));
+
+    dns.reverse(device.host, (err, hosts) => {
+      if (!err && hosts[0]) {
+        console.log(hosts);
+        hostnames[device.host] = hosts[0];
+      }
+    });
 
     device.startPolling(5000);
 
