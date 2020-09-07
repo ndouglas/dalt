@@ -160,7 +160,7 @@
             </div>
           `;
         }
-        $('#smart-plugs').append(smartPlugHtml);
+        $('#smart-plugs').html(smartPlugHtml);
       }
 
       socket.on('outletState', (data) => {
@@ -174,7 +174,10 @@
       });
 
       socket.on('kasaNewDevice', (data) => {
-        console.log('Received kasaNewDevice', data);
+      });
+
+      socket.on('kasaPowerUpdate', (data) => {
+        console.log('Received kasaPowerUpdate', data);
         const decodedData = JSON.parse(data);
         for (let i = 0; i < smartPlugs.length; i++) {
           if (smartPlugs[i].host === decodedData.host) {
@@ -184,9 +187,6 @@
         smartPlugs.push(decodedData);
         console.log(smartPlugs);
         updateSmartPlugs();
-      });
-
-      socket.on('kasaPowerUpdate', (data) => {
         updateSmartPlugState(data.hostname, data.powerOn);
       });
 
