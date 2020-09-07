@@ -103,6 +103,8 @@ server.listen(8080, () => {
 
 io.sockets.on('connection', (socket) => {
 
+  console.log('Received new connection!');
+
   for (let i = 0; i < outlets.length; i++) {
     const data = {
       outlet: i + 1,
