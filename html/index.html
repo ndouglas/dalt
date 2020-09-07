@@ -36,7 +36,7 @@
       .outlet-state-true {
         opacity: 100%;
       }
-      .smart-plug-single {
+      .smart-plug {
         background: url('./images/outlet.png');
         display: block;
         position: relative;
@@ -171,9 +171,6 @@
       socket.on('updateEnvironment', (data) => {
         const decodedData = JSON.parse(data);
         updateEnvironment(decodedData.temperature, decodedData.humidity);
-      });
-
-      socket.on('kasaNewDevice', (data) => {
       });
 
       socket.on('kasaPowerUpdate', (data) => {
