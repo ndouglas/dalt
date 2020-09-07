@@ -124,13 +124,12 @@
       }
 
       function updateSmartPlugState(hostname, state) {
-        console.log(hostname, state);
         const divId = `smart-plug-${hostname}`;
         const oldClass = `smart-plug-state-${!state ? 'true' : 'false'}`;
         const newClass = `smart-plug-state-${state ? 'true' : 'false'}`;
-        console.log(`Removing class ${oldClass} from ${hostname}.`);
-        console.log(`Adding class ${newClass} to ${hostname}.`);
-        $(`#${divId}`).removeClass(oldClass).addClass(newClass);
+        if (!$(`#${divId}`).hasClass(newClass)) {
+          $(`#${divId}`).removeClass(oldClass).addClass(newClass);
+        }
       }
 
       function sendSmartPlugState(hostname, host, state) {
@@ -193,7 +192,6 @@
       });
 
       socket.on('kasaNewDevice', (data) => {
-        console.log('Received kasaNewDevice', data);
         const decodedData = JSON.parse(data);
         for (let i = 0; i < smartPlugs.length; i++) {
           if (smartPlugs[i].host === decodedData.host) {
@@ -201,12 +199,10 @@
           }
         }
         smartPlugs.push(decodedData);
-        console.log(smartPlugs);
         updateSmartPlugs();
       });
 
       socket.on('kasaPowerUpdate', (data) => {
-        console.log('Received kasaPowerUpdate', data);
         const decodedData = JSON.parse(data);
         updateSmartPlugState(decodedData.hostname, decodedData.powerOn);
       });
