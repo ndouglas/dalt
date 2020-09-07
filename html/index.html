@@ -124,6 +124,7 @@
       }
 
       function updateSmartPlugState(hostname, state) {
+        console.log(hostname, state);
         const divId = `smart-plug-${hostname}`;
         const oldClass = `smart-plug-state-${!state ? 'true' : 'false'}`;
         const newClass = `smart-plug-state-${state ? 'true' : 'false'}`;
@@ -206,7 +207,8 @@
 
       socket.on('kasaPowerUpdate', (data) => {
         console.log('Received kasaPowerUpdate', data);
-        updateSmartPlugState(data.hostname, data.powerOn);
+        const decodedData = JSON.parse(data);
+        updateSmartPlugState(decodedData.hostname, decodedData.powerOn);
       });
 
       const updateEnvironmentInterval = setInterval(() => {
