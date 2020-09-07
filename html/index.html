@@ -187,8 +187,8 @@
         updateEnvironment(decodedData.temperature, decodedData.humidity);
       });
 
-      socket.on('kasaPowerUpdate', (data) => {
-        console.log('Received kasaPowerUpdate', data);
+      socket.on('kasaNewDevice', (data) => {
+        console.log('Received kasaNewDevice', data);
         const decodedData = JSON.parse(data);
         for (let i = 0; i < smartPlugs.length; i++) {
           if (smartPlugs[i].host === decodedData.host) {
@@ -198,6 +198,10 @@
         smartPlugs.push(decodedData);
         console.log(smartPlugs);
         updateSmartPlugs();
+      });
+
+      socket.on('kasaPowerUpdate', (data) => {
+        console.log('Received kasaPowerUpdate', data);
         updateSmartPlugState(data.hostname, data.powerOn);
       });
 
