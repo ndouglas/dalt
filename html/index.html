@@ -65,8 +65,8 @@
     <div class="wrapper environment-wrapper">
       <h2>Environment</h2>
       <div class="environment" id="environment">
-        <div class="environment-temperature" id="environment-temperature"></div>
-        <div class="environment-humidity" id="environment-humidity"></div>
+        <div class="environment-temperature" id="environment-temperature"><b>Temperature</b>: <span id="environment-temperature-value"></span></div>
+        <div class="environment-humidity" id="environment-humidity"><b>Humidity</b>: <span id="environment-humidity-value"></span></div>
       </div>
     </div>
 
@@ -88,8 +88,8 @@
 
       function updateEnvironment(temperature, humidity) {
         const fahrenheit = temperature * 9/5 + 32;
-        $('#environment-temperature').html(`${temperature}ºC/${fahrenheit}ºF`);
-        $('#environment-humidity').html(`${humidity}%`);
+        $('#environment-temperature-value').html(`${temperature}ºC/${fahrenheit}ºF`);
+        $('#environment-humidity-value').html(`${humidity}%`);
       }
 
       function sendOutletState(outlet, state) {
