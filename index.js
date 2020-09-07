@@ -7,8 +7,6 @@ const dhtSensor = require('node-dht-sensor').promises;
 const KasaClient = require('tplink-smarthome-api').Client;
 const dns = require('dns');
 
-const kasaClient = new KasaClient();
-
 dhtSensor.setMaxRetries(10);
 
 const htmlPath = __dirname + '/html';
@@ -163,6 +161,8 @@ io.sockets.on('connection', (socket) => {
       status: device.status,
     };
   };
+
+  const kasaClient = new KasaClient();
 
   kasaClient.on('device-new', (device) => {
 
