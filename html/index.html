@@ -57,22 +57,6 @@
     <div class="wrapper outlet-panel-wrapper">
       <h2>Outlet Panel</h2>
       <div class="outlet-panel" id="outlet-panel">
-        <script>
-          let html = '';
-          for (let i = 0; i < 4; i++) {
-            const outletIdTop = i * 2 + 1;
-            const outletIdBottom = outletIdTop + 1;
-            html += `
-              <div class="outlet-fixture" id="outlet-fixture-${i}">
-                <div class="outlet-single outlet-state-false" id="outlet-single-${outletIdTop}" onClick="clickOutlet(${outletIdTop});">
-                </div>
-                <div class="outlet-single outlet-state-false" id="outlet-single-${outletIdBottom}" onClick="clickOutlet(${outletIdBottom});">
-                </div>
-              </div>
-            `;
-          }
-          $('#outlet-panel').append(html);
-        </script>
       </div>
     </div>
 
