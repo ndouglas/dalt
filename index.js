@@ -124,6 +124,20 @@ io.sockets.on('connection', (socket) => {
     }
   });
 
+  socket.on('smartPlugState', (data) => {
+    console.log(`Received Smart Plug State Data: ${JSON.stringify(data, null, 2)}`);
+    const decodedData = JSON.parse(data);
+    const smartPlugHost = decodedData.host;
+    const state = decodedData.state;
+    kasaClient
+      .getDevice({
+        host: smartPlugHost
+      })
+      .then((device) => {
+        device.setPowerState(state);
+      });
+  });
+
   socket.on('updateEnvironment', () => {
     dhtSensor
       .read(11, 14)
@@ -153,7 +167,7 @@ io.sockets.on('connection', (socket) => {
     dns.reverse(device.host, (err, hosts) => {
       if (!err && hosts[0]) {
         console.log(hosts);
-        hostnames[device.host] = hosts[0];
+        hostnames[device.host] = hosts[0].split('.')[0];
       }
       socket.emit('kasaNewDevice', JSON.stringify(getDeviceData(device), null, 2));
     });
@@ -169,8 +183,9 @@ io.sockets.on('connection', (socket) => {
     });
 
     device.on('power-update', (powerOn) => {
-      socket.emit('kasaPowerUpdate', JSON.stringify(getDeviceData(device), null, 2));
-      // console.log('power-update', device.host, powerOn);
+      const data = getDeviceData(device);
+      data.powerOn = powerOn;
+      socket.emit('kasaPowerUpdate', JSON.stringify(data, null, 2));
     });
 
     device.on('in-use', () => {
@@ -184,20 +199,19 @@ io.sockets.on('connection', (socket) => {
     });
 
     device.on('in-use-update', (inUse) => {
-      socket.emit('kasaInUseUpdate', JSON.stringify(getDeviceData(device), null, 2));
-      // console.log('in-use-update', device.host, inUse);
+      const data = getDeviceData(device);
+      data.inUse = inUse;
+      socket.emit('kasaInUseUpdate', JSON.stringify(data, null, 2));
     });
 
   });
 
   kasaClient.on('device-online', (device) => {
     socket.emit('kasaDeviceOnline', JSON.stringify(getDeviceData(device), null, 2));
-    // console.log('device-online', device.host);
   });
 
   kasaClient.on('device-offline', (device) => {
     socket.emit('kasaDeviceOffline', JSON.stringify(getDeviceData(device), null, 2));
-    // console.log('device-offline', device.host);
   });
 
   kasaClient.startDiscovery();

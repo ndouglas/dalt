@@ -36,9 +36,24 @@
       .outlet-state-true {
         opacity: 100%;
       }
+      .smart-plug-single {
+        background: url('./images/outlet.png');
+        display: block;
+        position: relative;
+        background-size: contain;
+        width: 128px;
+        height: 128px;
+      }
+      .smart-plug-state-false {
+        opacity: 50%;
+      }
+      .smart-plug-state-true {
+        opacity: 100%;
+      }
     </style>
   </head>
   <body>
+
     <div class="wrapper outlet-panel-wrapper">
       <h2>Outlet Panel</h2>
       <div class="outlet-panel" id="outlet-panel">
@@ -61,6 +76,12 @@
       </div>
     </div>
 
+    <div class="wrapper smart-plugs-wrapper">
+      <h2>Smart Plugs</h2>
+      <div class="smart-plugs" id="smart-plugs">
+      </div>
+    </div>
+
     <div class="wrapper environment-wrapper">
       <h2>Environment</h2>
       <div class="environment" id="environment">
@@ -72,9 +93,11 @@
     <script>
       let socket = io.connect();
 
+      let smartPlugs = [];
+
       function clickOutlet(outlet) {
         const divId = `outlet-single-${outlet}`;
-        const onClass = `outlet-state-true`;
+        const onClass = 'outlet-state-true';
         sendOutletState(outlet, !$(`#${divId}`).hasClass(onClass));
       }
 
@@ -85,12 +108,6 @@
         $(`#${divId}`).removeClass(oldClass).addClass(newClass);
       }
 
-      function updateEnvironment(temperature, humidity) {
-        const fahrenheit = temperature * 9/5 + 32;
-        $('#environment-temperature-value').html(`${temperature}ºC / ${fahrenheit}ºF`);
-        $('#environment-humidity-value').html(`${humidity}%`);
-      }
-
       function sendOutletState(outlet, state) {
         updateOutletState(outlet, state);
         const data = {
@@ -98,6 +115,66 @@
           state: state,
         };
         socket.emit('outletState', JSON.stringify(data, null, 2));
+      }
+
+      function clickSmartPlug(hostname, host) {
+        const divId = `smart-plug-${hostname}`;
+        const onClass = 'smart-plug-state-true';
+        sendSmartPlugState(hostname, host, !$(`#${divId}`).hasClass(onClass));
+      }
+
+      function updateSmartPlugState(hostname, state) {
+        const divId = `smart-plug-${hostname}`;
+        const oldClass = `smart-plug-state-${!state ? 'true' : 'false'}`;
+        const newClass = `smart-plug-state-${state ? 'true' : 'false'}`;
+        $(`#${divId}`).removeClass(oldClass).addClass(newClass);
+      }
+
+      function sendSmartPlugState(hostname, host, state) {
+        updateSmartPlugState(hostname, state);
+        const data = {
+          host: host,
+          state: state,
+        };
+        socket.emit('smartPlugState', JSON.stringify(data, null, 2));
+      }
+
+      function updateEnvironment(temperature, humidity) {
+        const fahrenheit = temperature * 9/5 + 32;
+        $('#environment-temperature-value').html(`${temperature}ºC / ${fahrenheit}ºF`);
+        $('#environment-humidity-value').html(`${humidity}%`);
+      }
+
+      let html = '';
+      for (let i = 0; i < 4; i++) {
+        const outletIdTop = i * 2 + 1;
+        const outletIdBottom = outletIdTop + 1;
+        html += `
+          <div class="outlet-fixture" id="outlet-fixture-${i}">
+            <div class="outlet-single outlet-state-false" id="outlet-single-${outletIdTop}" onClick="clickOutlet(${outletIdTop});">
+              ${outletIdTop}
+            </div>
+            <div class="outlet-single outlet-state-false" id="outlet-single-${outletIdBottom}" onClick="clickOutlet(${outletIdBottom});">
+              ${outletIdBottom}
+            </div>
+          </div>
+        `;
+      }
+      $('#outlet-panel').append(html);
+
+      function updateSmartPlugs() {
+        let html = '';
+        for (let i = 0; i < smartPlugs.length; i++) {
+          const smartPlug = smartPlugs[i];
+          const host = smartPlug.host;
+          const hostname = smartPlug.hostname;
+          html += `
+            <div class="smart-plug" id="smart-plug-${hostname}" onClick="clickSmartPlug('${hostname}', '${host}');">
+              ${hostname}
+            </div>
+          `;
+        }
+        $('#smart-plugs').append(html);
       }
 
       socket.on('outletState', (data) => {
@@ -112,7 +189,17 @@
 
       socket.on('kasaNewDevice', (data) => {
         const decodedData = JSON.parse(data);
-        console.log(decodedData);
+        for (let i = 0; i < smartPlugs.length; i++) {
+          if (smartPlugs[i].host === decodedData.host) {
+            return;
+          }
+        }
+        smartPlugs.push(decodedData);
+        updateSmartPlugs();
+      });
+
+      socket.on('kasaPowerUpdate', (data) => {
+        updateSmartPlugState(data.hostname, data.powerOn);
       });
 
       const updateEnvironmentInterval = setInterval(() => {
