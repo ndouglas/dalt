@@ -167,7 +167,10 @@ io.sockets.on('connection', (socket) => {
   kasaClient.on('device-new', (device) => {
 
     dns.reverse(device.host, (err, hosts) => {
-      if (!err && hosts[0]) {
+      if (err) {
+        console.error(error);
+      }
+      else if (hosts[0]) {
         console.log(hosts);
         hostnames[device.host] = hosts[0].split('.')[0];
       }
