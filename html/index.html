@@ -111,6 +111,11 @@
         updateEnvironment(decodedData.temperature, decodedData.humidity);
       });
 
+      socket.on('kasaNewDevice', (data) => {
+        const decodedData = JSON.parse(data);
+        console.log(decodedData);
+      });
+
       const updateEnvironmentInterval = setInterval(() => {
         socket.emit('updateEnvironment', {});
       }, 1000);

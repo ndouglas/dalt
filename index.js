@@ -150,13 +150,12 @@ io.sockets.on('connection', (socket) => {
 
   kasaClient.on('device-new', (device) => {
 
-    socket.emit('kasaNewDevice', JSON.stringify(getDeviceData(device), null, 2));
-
     dns.reverse(device.host, (err, hosts) => {
       if (!err && hosts[0]) {
         console.log(hosts);
         hostnames[device.host] = hosts[0];
       }
+      socket.emit('kasaNewDevice', JSON.stringify(getDeviceData(device), null, 2));
     });
 
     device.startPolling(5000);
@@ -193,12 +192,12 @@ io.sockets.on('connection', (socket) => {
 
   kasaClient.on('device-online', (device) => {
     socket.emit('kasaDeviceOnline', JSON.stringify(getDeviceData(device), null, 2));
-    console.log('device-online', device.host);
+    // console.log('device-online', device.host);
   });
 
   kasaClient.on('device-offline', (device) => {
     socket.emit('kasaDeviceOffline', JSON.stringify(getDeviceData(device), null, 2));
-    console.log('device-offline', device.host);
+    // console.log('device-offline', device.host);
   });
 
   kasaClient.startDiscovery();
